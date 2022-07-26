@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "next-js": "^0.9.0-alpha",
+    "typescript": "^4.8.0-dev.20220726"
+  }
+}
