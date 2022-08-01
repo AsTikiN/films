@@ -1,14 +1,13 @@
 import type { NextPage } from 'next'
+import Home from "../components/Home";
 
 
-const Home: NextPage = () => {
+const Index = () => {
   return (
     <div>
-      <div style={{position: 'relative', height: '900px',  overflow: 'hidden'}}>
-      <iframe src="https://kino.is/301"   style={{position: 'absolute', width: '100%', height: '100%', transform: 'scale(1.2)'}}></iframe>
-      </div>
+      <Home/>
     </div>
   )
 }
 
-export default Home
+export default Index
