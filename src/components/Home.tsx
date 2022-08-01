@@ -1,29 +1,33 @@
 import React, { FC } from "react";
+import { styled } from '@mui/system';
 
-import { ContainerStyled } from "../styles/globalStyled";
+// import { ContainerStyled } from "../styles/globalStyled";
 import MySwitch from "./UI/MySwitch";
-import styled from "styled-components";
+// import styled from "styled-components";
 
-const NavbarWrapper = styled.div`
-  height: 102px;
-  width: 100%;
-  background: #192233;
-  color: #fff;
-  display: flex;
-  align-items: center;
-`;
+const NavbarWrapper = styled("div")(({theme}) => ({
+  height: "102px",
+  width: "100%",
+  background: theme.palette.dropDown.main,
+  color: theme.palette.textColor.main,
+  display: "flex",
+  alignItems: "center"
+})) 
 
-const NavbarContent = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 30px;
-`;
+const NavbarContent = styled("div")(({theme}) => ({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  padding: "0 30px",
+}))
 
-const Logo = styled.img`
-  width: 60px;
-  height: 45px;
-  border-radius: 20px;
-`;
+const Logo = styled("img")(({theme}) => ({
+  width: "60px",
+  height: "45px",
+  borderRadius: "20px"
+}))
+
+const ContainerStyled = styled("div")({});
 
 const Home: FC = () => {
   return (
