@@ -1,6 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Container, display, styled } from "@mui/system";
 import Navbar from "./Navbar";
+import { useGetFilmQuery, useGetTopPopularFilmsQuery } from "../store/filmsApi/filmsApi";
+import FilmCard from "./FilmCard";
+import RatingProgress from "./UI/RatingProgress";
 
 const Thor = styled("div")({
   height: "650px",
@@ -13,6 +16,9 @@ const Thor = styled("div")({
 });
 
 const Home: FC = () => {
+  const { data, isLoading, isFetching, isError } = useGetFilmQuery(301);
+  // const { data, isLoading, isFetching, isError } = useGetTopPopularFilmsQuery(1);
+
   return (
     <>
       <Navbar />
@@ -21,6 +27,13 @@ const Home: FC = () => {
           <h1 style={{ color: "white" }}>123</h1>
         </Container>
       </Thor>
+      {/*{isLoading ? <h1>LOADING...</h1> : isError ? <h1>ERROR</h1> : JSON.stringify(data, null, "\n")}*/}
+      <FilmCard />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   );
 };
