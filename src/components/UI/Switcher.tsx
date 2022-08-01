@@ -43,7 +43,7 @@ const CustomSwitch = styled((props) => (
   },
 }));
 
-const MySwitch = () => {
+const Switcher = () => {
   return (
     <div>
       <CustomSwitch />
@@ -51,4 +51,4 @@ const MySwitch = () => {
   );
 };
 
-export default MySwitch;
+export default Switcher;

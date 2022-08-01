@@ -6,13 +6,14 @@ import FilmCard from "./FilmCard";
 import RatingProgress from "./UI/RatingProgress";
 
 const Thor = styled("div")({
-  height: "650px",
+  height: "calc(100vh - 102px)",
   width: "100%",
   backgroundImage: "url(https://images3.alphacoders.com/124/1241167.png)",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
   backgroundColor: "rgba(0,0,0,0.6)",
   backgroundBlendMode: "multiply",
+  backgroundPosition: "center center",
 });
 
 const Home: FC = () => {

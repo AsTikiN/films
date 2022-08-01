@@ -1,8 +1,8 @@
 import { Stack } from "@mui/material";
-import MySwitch from "./UI/MySwitch";
-import MySearchInput from "./UI/MySearchInput";
+import MySwitch from "./UI/Switcher";
+import MySearchInput from "./UI/Search";
 import CatalogButton from "./UI/Buttons/CatalogButton";
-import LoginButton from "./UI/Buttons/LoginButton";
+import PrimaryButton from "./UI/Buttons/PrimaryButton";
 import React from "react";
 import { Container, styled } from "@mui/system";
 
@@ -49,9 +49,11 @@ const Navbar = () => {
             sx={{ alignItems: "center" }}
           >
             <MySwitch />
-            <MySearchInput />
+            <MySearchInput placeholder="Search orders..."/>
             <CatalogButton />
-            <LoginButton />
+            <PrimaryButton size={"medium"}> 
+              Вход
+            </PrimaryButton>
           </Stack>
         </NavbarContent>
       </Container>
