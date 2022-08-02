@@ -6,12 +6,12 @@ interface Genre {
   genre: string;
 }
 
-interface FilmInTopFilms {
+export interface FilmInTopFilms {
   filmId: number;
   nameRu: string;
   nameEn?: string;
   year: string;
-  filmLength?: any;
+  filmLength?: string;
   countries: Country[];
   genres: Genre[];
   rating: string;

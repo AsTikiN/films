@@ -13,7 +13,6 @@ export const filmsApi = createApi({
   }),
 
   endpoints: (build) => ({
-    //change any to film type
     getFilm: build.query<Film, number>({
       query: (filmId: number) => `v2.2/films/${filmId}`,
     }),

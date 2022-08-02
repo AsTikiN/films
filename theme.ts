@@ -1,7 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
-const createColor = (mainColor: string) =>
-  augmentColor({ color: { main: mainColor } });
+const createColor = (mainColor: string) => augmentColor({ color: { main: mainColor } });
 import "@mui/material/styles";
 
 import { SimplePaletteColorOptions } from "@mui/material/styles";
@@ -24,6 +23,9 @@ const theme = createTheme({
     bgColor: createColor("#111820"),
     yellow: createColor("#EAD359"),
     navBar: createColor("#192233"),
+    goodFilmRating: createColor("#57FEA8"),
+    normalFilmRating: createColor("#e8fe57"),
+    badFilmRating: createColor("#fe5757"),
     success: {
       main: "#59EAD0",
     },
@@ -100,6 +102,7 @@ const theme = createTheme({
       fontWeight: 500,
       fontSize: "14px",
       lineHeight: "28px",
+      color: "#C4C4C4",
     },
   },
 });
@@ -125,6 +128,9 @@ declare module "@mui/material/styles" {
     bgColor: SimplePaletteColorOptions;
     yellow: SimplePaletteColorOptions;
     navBar: SimplePaletteColorOptions;
+    goodFilmRating: SimplePaletteColorOptions;
+    normalFilmRating: SimplePaletteColorOptions;
+    badFilmRating: SimplePaletteColorOptions;
 
     primaryGradient?: {
       main?: string;
@@ -146,6 +152,14 @@ declare module "@mui/material/Typography" {
 declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
     primaryGradient: true;
+  }
+}
+
+declare module "@mui/material/LinearProgress" {
+  interface LinearProgressPropsColorOverrides {
+    goodFilmRating: true;
+    normalFilmRating: true;
+    badFilmRating: true;
   }
 }
 
