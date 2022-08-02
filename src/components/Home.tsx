@@ -6,6 +6,7 @@ import FilmCard from "./FilmCard";
 import RatingProgress from "./UI/RatingProgress";
 import { Stack } from "@mui/material";
 import theme from "../../theme";
+import Loader from "./UI/Loader";
 
 const Thor = styled("div")({
   height: "calc(100vh - 102px)",
@@ -33,6 +34,10 @@ const Home: FC = () => {
   // const { data, isLoading, isFetching, isError } = useGetFilmQuery(301);
   const { data, isLoading, isFetching, isError, isSuccess } = useGetTopPopularFilmsQuery(1);
 
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+
   return (
     <>
       <Navbar />
@@ -44,7 +49,9 @@ const Home: FC = () => {
       <FilmList>
         <Container maxWidth="lg">
           <StyledStack>
-            {isSuccess ? data.films.map((film) => <FilmCard key={film.filmId} film={film} />) : ""}
+            {/* {isSuccess ? data.films.map((film) => <FilmCard key={film.filmId} film={film} />) : ""} */}
+            {data && data.films.map((film) => <FilmCard key={film.filmId} film={film} />)}
+            {isLoading && <Loader />}
           </StyledStack>
         </Container>
       </FilmList>
