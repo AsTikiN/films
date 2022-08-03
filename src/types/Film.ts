@@ -70,5 +70,5 @@ export interface Film {
 
 export interface TopFilms {
   films: FilmInTopFilms[];
-  pageCount: number;
+  pagesCount: number;
 }

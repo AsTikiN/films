@@ -30,7 +30,12 @@ const StyledLinearProgress = styled(LinearProgress)({
 });
 
 const RatingProgress: FC<RatingProgressProps> = ({ rating, ratingVoteCount }) => {
-  const ratingColor = +rating >= 8 ? "goodFilmRating" : +rating >= 5 ? "normalFilmRating" : "badFilmRating";
+  //не все рейтинги приходят в виде "9.9" иногда приходят в процентах,
+  // поэтому такое отлавливаю и привожу в нормальный вид + округляю до одного знака после запятой
+  const normalizedRating = rating && rating.includes("%") ? Math.floor(+rating.slice(0, -1)) / 10 : +rating;
+
+  const ratingColor =
+    normalizedRating >= 8 ? "goodFilmRating" : normalizedRating >= 5 ? "normalFilmRating" : "badFilmRating";
   return (
     <Box
       sx={{
@@ -41,9 +46,9 @@ const RatingProgress: FC<RatingProgressProps> = ({ rating, ratingVoteCount }) =>
     >
       <StyledBox>
         <Box minWidth={35}>{ratingVoteCount} Голосов</Box>
-        <Box>{rating}/10</Box>
+        <Box>{normalizedRating}/10</Box>
       </StyledBox>
-      <StyledLinearProgress color={ratingColor} variant="determinate" value={+rating * 10} />
+      <StyledLinearProgress color={ratingColor} variant="determinate" value={+normalizedRating * 10} />
     </Box>
   );
 };

@@ -57,10 +57,10 @@ const FilmCard: FC<FilmCardProps> = ({ film }) => {
         <StyledCardMedia image={posterUrlPreview} />
         <StyledCardContent>
           <div>
-            <Typography variant="h5" component="div">
+            <Typography variant="h6" component="div">
               {nameRu}
             </Typography>
-            <Typography gutterBottom variant="body1" component="div">
+            <Typography variant="body1" component="div">
               {nameEn}
             </Typography>
           </div>

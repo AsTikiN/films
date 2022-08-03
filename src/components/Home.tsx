@@ -4,8 +4,9 @@ import Navbar from "./Navbar";
 import { useGetFilmQuery, useGetTopPopularFilmsQuery } from "../store/filmsApi/filmsApi";
 import FilmCard from "./FilmCard";
 import RatingProgress from "./UI/RatingProgress";
-import { Stack } from "@mui/material";
+import { Pagination, Stack } from "@mui/material";
 import theme from "../../theme";
+import FilmList from "./FilmList";
 
 const Thor = styled("div")({
   height: "calc(100vh - 102px)",
@@ -18,20 +19,8 @@ const Thor = styled("div")({
   backgroundPosition: "center center",
 });
 
-const StyledStack = styled(Stack)({
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-around",
-  flexWrap: "wrap",
-});
-
-const FilmList = styled("div")({
-  background: theme.palette.bgColor.main,
-});
-
 const Home: FC = () => {
   // const { data, isLoading, isFetching, isError } = useGetFilmQuery(301);
-  const { data, isLoading, isFetching, isError, isSuccess } = useGetTopPopularFilmsQuery(1);
 
   return (
     <>
@@ -41,18 +30,7 @@ const Home: FC = () => {
           <h1 style={{ color: "white" }}>123</h1>
         </Container>
       </Thor>
-      <FilmList>
-        <Container maxWidth="lg">
-          <StyledStack>
-            {isSuccess ? data.films.map((film) => <FilmCard key={film.filmId} film={film} />) : ""}
-          </StyledStack>
-        </Container>
-      </FilmList>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <FilmList />
     </>
   );
 };
