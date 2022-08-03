@@ -7,6 +7,7 @@ import RatingProgress from "./UI/RatingProgress";
 import { Pagination, Stack } from "@mui/material";
 import theme from "../../theme";
 import FilmList from "./FilmList";
+import MainLayout from "../MainLayout";
 
 const Thor = styled("div")({
   height: "calc(100vh - 102px)",
@@ -23,15 +24,14 @@ const Home: FC = () => {
   // const { data, isLoading, isFetching, isError } = useGetFilmQuery(301);
 
   return (
-    <>
-      <Navbar />
+    <MainLayout>
       <Thor>
         <Container maxWidth="lg">
           <h1 style={{ color: "white" }}>123</h1>
         </Container>
       </Thor>
       <FilmList />
-    </>
+    </MainLayout>
   );
 };
 

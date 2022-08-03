@@ -5,16 +5,14 @@ import theme from "../../../../theme";
 // rework
 const CatalogButton = () => {
   return (
-    <Link href={"/catalog"}>
-      <Button
-        sx={{
-          fontSize: "17px",
-          border: "none",
-        }}
-      >
-        Каталог
-      </Button>
-    </Link>
+    <Button
+      sx={{
+        fontSize: "17px",
+        border: "none",
+      }}
+    >
+      Каталог
+    </Button>
   );
 };
 

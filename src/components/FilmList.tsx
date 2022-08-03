@@ -45,10 +45,6 @@ const FilmList = () => {
     FilmListTopRef.current && FilmListTopRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  if (data) {
-    console.log(data.films);
-  }
-
   return (
     <>
       {data && (
