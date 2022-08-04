@@ -1,11 +1,5 @@
-import React, { FC, useEffect } from "react";
-import { Container, display, styled } from "@mui/system";
-import Navbar from "./Navbar";
-import { useGetFilmQuery, useGetTopPopularFilmsQuery } from "../store/filmsApi/filmsApi";
-import FilmCard from "./FilmCard";
-import RatingProgress from "./UI/RatingProgress";
-import { Pagination, Stack } from "@mui/material";
-import theme from "../../theme";
+import React, { FC } from "react";
+import { Container, styled } from "@mui/system";
 import FilmList from "./FilmList";
 import MainLayout from "../MainLayout";
 
