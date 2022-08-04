@@ -4,9 +4,10 @@ import Navbar from "./Navbar";
 import { useGetFilmQuery, useGetTopPopularFilmsQuery } from "../store/filmsApi/filmsApi";
 import FilmCard from "./FilmCard";
 import RatingProgress from "./UI/RatingProgress";
-import { Stack } from "@mui/material";
+import { Pagination, Stack } from "@mui/material";
 import theme from "../../theme";
-import Loader from "./UI/Loader";
+import FilmList from "./FilmList";
+import MainLayout from "../MainLayout";
 
 const Thor = styled("div")({
   height: "calc(100vh - 102px)",
@@ -19,48 +20,18 @@ const Thor = styled("div")({
   backgroundPosition: "center center",
 });
 
-const StyledStack = styled(Stack)({
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-around",
-  flexWrap: "wrap",
-});
-
-const FilmList = styled("div")({
-  background: theme.palette.bgColor.main,
-});
-
 const Home: FC = () => {
   // const { data, isLoading, isFetching, isError } = useGetFilmQuery(301);
-  const { data, isLoading, isFetching, isError, isSuccess } = useGetTopPopularFilmsQuery(1);
-
-  useEffect(() => {
-    console.log(data)
-  }, [data])
-
+  
   return (
-    <>
-      <Navbar />
+    <MainLayout>
       <Thor>
         <Container maxWidth="lg">
           <h1 style={{ color: "white" }}>123</h1>
         </Container>
       </Thor>
-      <FilmList>
-        <Container maxWidth="lg">
-          <StyledStack>
-            {/* {isSuccess ? data.films.map((film) => <FilmCard key={film.filmId} film={film} />) : ""} */}
-            {data && data.films.map((film) => <FilmCard key={film.filmId} film={film} />)}
-            {isLoading && <Loader />}
-          </StyledStack>
-        </Container>
-      </FilmList>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-    </>
+      <FilmList />
+    </MainLayout>
   );
 };
 

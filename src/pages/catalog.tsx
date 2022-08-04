@@ -1,8 +1,10 @@
+import MainLayout from "../MainLayout";
+
 const Catalog = () => {
   return (
-    <div>
+    <MainLayout>
       <h1>CATALOG</h1>
-    </div>
+    </MainLayout>
   );
 };
 

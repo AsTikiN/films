@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import RatingProgress from "./UI/RatingProgress";
 import React, { FC } from "react";
 import { FilmInTopFilms } from "../types/Film";
+import Link from "next/link";
 
 interface FilmCardProps {
   film: FilmInTopFilms;
@@ -39,35 +40,40 @@ const StyledCardContent = styled(CardContent)(({ theme }) => ({
     flexDirection: "column",
     justifyContent: "space-between",
     flex: "1",
+    padding: "0 0 0 16px",
   },
 }));
 
 const StyledCardMedia = styled(CardMedia)({
   "&.MuiCardMedia-root": {
     width: "140px",
-    height: "190px",
+    height: "210px",
   },
 });
 
 const FilmCard: FC<FilmCardProps> = ({ film }) => {
-  const { nameRu, nameEn, ratingVoteCount, rating, posterUrlPreview } = film;
+  const { nameRu, nameEn, ratingVoteCount, rating, posterUrlPreview, filmId } = film;
   return (
-    <StyledCard sx={{ maxWidth: 430 }}>
-      <StyledCardActionArea>
-        <StyledCardMedia image={posterUrlPreview} />
-        <StyledCardContent>
-          <div>
-            <Typography variant="h5" component="div">
-              {nameRu}
-            </Typography>
-            <Typography gutterBottom variant="body1" component="div">
-              {nameEn}
-            </Typography>
-          </div>
-          <RatingProgress rating={rating} ratingVoteCount={ratingVoteCount} />
-        </StyledCardContent>
-      </StyledCardActionArea>
-    </StyledCard>
+    <Link href={`/film/${filmId}`}>
+      <a>
+        <StyledCard sx={{ maxWidth: 430 }}>
+          <StyledCardActionArea>
+            <StyledCardMedia image={posterUrlPreview} />
+            <StyledCardContent>
+              <div>
+                <Typography variant="h6" component="div">
+                  {nameRu}
+                </Typography>
+                <Typography variant="body1" component="div">
+                  {nameEn}
+                </Typography>
+              </div>
+              <RatingProgress rating={rating} ratingVoteCount={ratingVoteCount} />
+            </StyledCardContent>
+          </StyledCardActionArea>
+        </StyledCard>
+      </a>
+    </Link>
   );
 };
 
