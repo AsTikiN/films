@@ -2,14 +2,15 @@ import { Container, styled } from "@mui/system";
 import FilmCard from "./FilmCard";
 import React, { useRef, useState } from "react";
 import { Pagination, Stack } from "@mui/material";
+import CardLoader from "./UI/Loaders/CardLoader";
 import theme from "../../theme";
 import { useGetTopPopularFilmsQuery } from "../store/filmsApi/filmsApi";
 
 const StyledStack = styled(Stack)({
   display: "flex",
   flexDirection: "row",
-  justifyContent: "space-around",
   flexWrap: "wrap",
+  gap: "35px",
 });
 
 const StyledPagination = styled(Pagination)({
@@ -32,7 +33,7 @@ const StyledPagination = styled(Pagination)({
 
 const FilmListWrapper = styled("div")({
   background: theme.palette.bgColor.main,
-  paddingBottom: "50px",
+  padding: "50px 0",
 });
 const FilmList = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,24 +48,28 @@ const FilmList = () => {
 
   return (
     <>
-      {data && (
-        <FilmListWrapper ref={FilmListTopRef}>
-          <Container maxWidth="lg">
-            <StyledStack>
+      <FilmListWrapper ref={FilmListTopRef}>
+        <Container maxWidth="lg">
+          <StyledStack>
+          {
+            data ? 
+            <>
               {data.films.map((film) => (
                 <FilmCard key={film.filmId} film={film} />
               ))}
-            </StyledStack>
-            <StyledPagination
-              color={"primary"}
-              page={currentPage}
-              onChange={handleChangePage}
-              variant={"outlined"}
-              count={data.pagesCount}
-            />
-          </Container>
-        </FilmListWrapper>
-      )}
+            </> 
+          : new Array(21).fill(0).map((elem, index) => <CardLoader key={index} />)
+          }
+          </StyledStack>
+          <StyledPagination
+            color={"primary"}
+            page={currentPage}
+            onChange={handleChangePage}
+            variant={"outlined"}
+            count={data ? data.pagesCount : 10}
+          /> 
+        </Container>
+      </FilmListWrapper> 
     </>
   );
 };

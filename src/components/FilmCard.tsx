@@ -20,7 +20,6 @@ const StyledCard = styled(Card)(({ theme }) => ({
     borderRadius: "15px",
     padding: "0",
     width: "430px",
-    marginTop: "35px",
   },
 }));
 
@@ -48,8 +47,18 @@ const StyledCardMedia = styled(CardMedia)({
   "&.MuiCardMedia-root": {
     width: "140px",
     height: "210px",
+    transition: "transform 0.2s ease-in",
+
+    "&:hover": {
+      transform: "scale(1.5)"
+    }
   },
 });
+
+const MediaWrapper = styled("div") ({
+  overflow: "hidden",
+  borderRadius: "15px",
+})
 
 const FilmCard: FC<FilmCardProps> = ({ film }) => {
   const { nameRu, nameEn, ratingVoteCount, rating, posterUrlPreview, filmId } = film;
@@ -58,7 +67,9 @@ const FilmCard: FC<FilmCardProps> = ({ film }) => {
       <a>
         <StyledCard sx={{ maxWidth: 430 }}>
           <StyledCardActionArea>
-            <StyledCardMedia image={posterUrlPreview} />
+            <MediaWrapper>
+              <StyledCardMedia image={posterUrlPreview} />
+            </MediaWrapper>
             <StyledCardContent>
               <div>
                 <Typography variant="h6" component="div">
