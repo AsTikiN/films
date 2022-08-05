@@ -47,18 +47,18 @@ const StyledCardMedia = styled(CardMedia)({
   "&.MuiCardMedia-root": {
     width: "140px",
     height: "210px",
-    transition: "transform 0.2s ease-in",
+    transition: "transform 0.2s ease-out",
 
     "&:hover": {
-      transform: "scale(1.5)"
-    }
+      transform: "scale(1.5)",
+    },
   },
 });
 
-const MediaWrapper = styled("div") ({
+const MediaWrapper = styled("div")({
   overflow: "hidden",
   borderRadius: "15px",
-})
+});
 
 const FilmCard: FC<FilmCardProps> = ({ film }) => {
   const { nameRu, nameEn, ratingVoteCount, rating, posterUrlPreview, filmId } = film;

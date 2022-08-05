@@ -1,7 +1,6 @@
 import { Stack } from "@mui/material";
 import MySwitch from "./UI/Switcher";
 import MySearchInput from "./UI/Search";
-import CatalogButton from "./UI/Buttons/CatalogButton";
 import PrimaryButton from "./UI/Buttons/PrimaryButton";
 import React, { forwardRef } from "react";
 import { Container, styled } from "@mui/system";
@@ -54,10 +53,12 @@ const Navbar = () => {
             <MySearchInput placeholder="Search orders..." />
             <Link href={"/catalog"}>
               <a>
-                <CatalogButton />
+                <PrimaryButton size={"medium"}>Каталог</PrimaryButton>
               </a>
             </Link>
-            <PrimaryButton size={"medium"}>Вход</PrimaryButton>
+            <PrimaryButton size={"large"} color={"gradient"}>
+              Вход
+            </PrimaryButton>
           </Stack>
         </NavbarContent>
       </Container>

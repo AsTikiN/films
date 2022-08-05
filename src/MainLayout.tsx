@@ -1,5 +1,4 @@
 import Navbar from "./components/Navbar";
-import React from "react";
 import { Container, styled } from "@mui/system";
 import theme from "../theme";
 

@@ -26,6 +26,7 @@ const theme = createTheme({
     goodFilmRating: createColor("#57FEA8"),
     normalFilmRating: createColor("#e8fe57"),
     badFilmRating: createColor("#fe5757"),
+
     success: {
       main: "#59EAD0",
     },
@@ -33,7 +34,7 @@ const theme = createTheme({
     primaryGradient: {
       main: "rgb(89,238,202)",
       contrastText: "#151D2E",
-      gradient: "linear-gradient(to right, #59EECA, #59D3EE)",
+      gradient: "linear-gradient(to right, #FF4A4C, #FF4A8B)",
     },
 
     action: {
@@ -46,9 +47,22 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           color: "#ffffff",
-          border: "1px solid #6574A7",
         },
       },
+      variants: [
+        {
+          props: { size: "large" },
+          style: { fontSize: "16px", padding: "15px 55px", borderRadius: "16px" },
+        },
+        {
+          props: { size: "medium" },
+          style: { fontSize: "16px", padding: "10px 40px", borderRadius: "16px" },
+        },
+        {
+          props: { color: "gradient" },
+          style: { color: "red" },
+        },
+      ],
     },
 
     MuiCard: {
@@ -152,6 +166,7 @@ declare module "@mui/material/Typography" {
 declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
     primaryGradient: true;
+    gradient: true;
   }
 }
 

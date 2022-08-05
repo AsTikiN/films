@@ -16,7 +16,7 @@ const Thor = styled("div")({
 
 const Home: FC = () => {
   // const { data, isLoading, isFetching, isError } = useGetFilmQuery(301);
-  
+
   return (
     <MainLayout>
       <Thor>
