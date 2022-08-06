@@ -1,6 +1,6 @@
 import { Container, styled } from "@mui/system";
 import FilmCard from "./FilmCard";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Pagination, Stack } from "@mui/material";
 import CardLoader from "./UI/Loaders/CardLoader";
 import theme from "../../theme";
@@ -35,31 +35,51 @@ const FilmListWrapper = styled("div")({
   background: theme.palette.bgColor.main,
   padding: "50px 0",
 });
+
+interface IuseStickyState {
+  defaultValue: number;
+  key: string;
+}
+
 const FilmList = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading, isFetching, isError, isSuccess } = useGetTopPopularFilmsQuery(currentPage);
+  const shouldUseLocalStorage = useRef(true);
 
+  const { data } = useGetTopPopularFilmsQuery(currentPage);
   const FilmListTopRef = useRef<null | HTMLDivElement>(null);
-
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
     FilmListTopRef.current && FilmListTopRef.current.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    if (shouldUseLocalStorage.current) {
+      const value = localStorage.getItem("filmPage");
+      if (value !== null) {
+        setCurrentPage(+value);
+      }
+      shouldUseLocalStorage.current = false;
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("filmPage", JSON.stringify(currentPage));
+  }, [currentPage]);
 
   return (
     <>
       <FilmListWrapper ref={FilmListTopRef}>
         <Container maxWidth="lg">
           <StyledStack>
-          {
-            data ? 
-            <>
-              {data.films.map((film) => (
-                <FilmCard key={film.filmId} film={film} />
-              ))}
-            </> 
-          : new Array(21).fill(0).map((elem, index) => <CardLoader key={index} />)
-          }
+            {data ? (
+              <>
+                {data.films.map((film) => (
+                  <FilmCard key={film.filmId} film={film} />
+                ))}
+              </>
+            ) : (
+              new Array(21).fill(0).map((elem, index) => <CardLoader key={index} />)
+            )}
           </StyledStack>
           <StyledPagination
             color={"primary"}
@@ -67,9 +87,9 @@ const FilmList = () => {
             onChange={handleChangePage}
             variant={"outlined"}
             count={data ? data.pagesCount : 10}
-          /> 
+          />
         </Container>
-      </FilmListWrapper> 
+      </FilmListWrapper>
     </>
   );
 };

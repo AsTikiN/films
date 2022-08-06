@@ -11,12 +11,8 @@ interface PrimaryButtonProps {
 const PrimaryButton = ({ children, size = "large", color }: PrimaryButtonProps) => {
   const CustomButton = styled(Button)(({ theme }) => ({
     "&.MuiButton-root": {},
-    "&:hover": {
-      opacity: "1",
-    },
   }));
-  if (color) {
-  }
+
   return (
     <CustomButton sx={{ background: color && theme.palette?.primaryGradient?.[color] }} size={size}>
       {children}
