@@ -1,14 +1,13 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, LinearProgress } from "@mui/material";
 import { styled } from "@mui/system";
-import Box from "@mui/material/Box";
 import RatingProgress from "./UI/RatingProgress";
 import React, { FC } from "react";
 import { FilmInTopFilms } from "../types/Film";
 import Link from "next/link";
+import ZoomCardImage from "../components/ZoomCardImage";
 
 interface FilmCardProps {
   film: FilmInTopFilms;
@@ -43,23 +42,6 @@ const StyledCardContent = styled(CardContent)(({ theme }) => ({
   },
 }));
 
-const StyledCardMedia = styled(CardMedia)({
-  "&.MuiCardMedia-root": {
-    width: "140px",
-    height: "210px",
-    transition: "transform 0.2s ease-out",
-
-    "&:hover": {
-      transform: "scale(1.5)",
-    },
-  },
-});
-
-const MediaWrapper = styled("div")({
-  overflow: "hidden",
-  borderRadius: "15px",
-});
-
 const FilmCard: FC<FilmCardProps> = ({ film }) => {
   const { nameRu, nameEn, ratingVoteCount, rating, posterUrlPreview, filmId } = film;
   return (
@@ -67,9 +49,7 @@ const FilmCard: FC<FilmCardProps> = ({ film }) => {
       <a>
         <StyledCard sx={{ maxWidth: 430 }}>
           <StyledCardActionArea>
-            <MediaWrapper>
-              <StyledCardMedia image={posterUrlPreview} />
-            </MediaWrapper>
+            <ZoomCardImage url={posterUrlPreview} />
             <StyledCardContent>
               <div>
                 <Typography variant="h6" component="div">
