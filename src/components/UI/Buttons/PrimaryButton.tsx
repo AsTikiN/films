@@ -5,9 +5,10 @@ interface PrimaryButtonProps {
   children: JSX.Element | string;
   size?: "small" | "medium" | "large";
   color?: "gradient";
+  onClick?: () => any;
 }
 
-const PrimaryButton = ({ children, size = "large", color }: PrimaryButtonProps) => {
+const PrimaryButton = ({ children, size = "large", color, ...props }: PrimaryButtonProps) => {
   const CustomButton = styled(Button)(({ theme }) => ({
     "&.MuiButton-root": {
       "& svg": {
@@ -18,7 +19,7 @@ const PrimaryButton = ({ children, size = "large", color }: PrimaryButtonProps) 
   }));
   //
   return (
-    <CustomButton sx={{ background: color && theme.palette?.primaryGradient?.[color] }} size={size}>
+    <CustomButton {...props} sx={{ background: color && theme.palette?.primaryGradient?.[color] }} size={size}>
       {children}
     </CustomButton>
   );

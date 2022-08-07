@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../MainLayout";
 import { useRouter } from "next/router";
 import { useGetFilmQuery } from "../../store/filmsApi/filmsApi";
@@ -9,6 +9,8 @@ import Typography from "@mui/material/Typography";
 import { Film } from "../../types/Film";
 import PrimaryButton from "../../components/UI/Buttons/PrimaryButton";
 import { BsBookmark, BsBookmarkFill, BsStar, BsStarFill } from "react-icons/bs";
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 const Wrapper = styled("div")({
   height: "calc(100vh - 102px)",
@@ -55,11 +57,52 @@ const normalizeGenres = (genres: any[]) => {
   return normalizedGenres;
 };
 
-const CurrentFilm = ({ film }: any) => {
+const CurrentFilm = () => {
   const router = useRouter();
+
+  const { addSavedFilm, addFavoriteFilm, removeSavedFilm, removeFavoriteFilm } = useActions();
+  const savedFilms = useTypedSelector((state) => state.film.savedFilms);
+  const favoriteFilms = useTypedSelector((state) => state.film.favoriteFilms);
+
   // @ts-ignore
   const { data } = useGetFilmQuery(+router.query.id);
-  console.log(data);
+
+  const [isSaved, setIsSaved] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleToggleSavedFilm = () => {
+    const filmId = data?.kinopoiskId;
+    if (!filmId) return;
+
+    if (!savedFilms.includes(filmId)) {
+      addSavedFilm(filmId);
+    } else {
+      removeSavedFilm(filmId);
+    }
+  };
+  const handleToggleFavoriteFilm = () => {
+    const filmId = data?.kinopoiskId;
+    if (!filmId) return;
+
+    if (!favoriteFilms.includes(filmId)) {
+      addFavoriteFilm(filmId);
+    } else {
+      removeFavoriteFilm(filmId);
+    }
+  };
+
+  useEffect(() => {
+    if (data) {
+      setIsSaved(savedFilms.includes(data.kinopoiskId));
+      localStorage.setItem("savedFilms", JSON.stringify(savedFilms));
+    }
+  }, [savedFilms]);
+  useEffect(() => {
+    if (data) {
+      setIsFavorite(favoriteFilms.includes(data.kinopoiskId));
+      localStorage.setItem("favoriteFilms", JSON.stringify(savedFilms));
+    }
+  }, [favoriteFilms]);
 
   return (
     <MainLayout>
@@ -71,14 +114,15 @@ const CurrentFilm = ({ film }: any) => {
               <Genres>{normalizeGenres(data.genres)}</Genres>
               <Description>{data.description}</Description>
               <Stack direction={"row"} spacing={"10px"}>
+                <h1></h1>
                 <PrimaryButton size={"medium"} color={"gradient"}>
                   Смотреть
                 </PrimaryButton>
-                <PrimaryButton size={"small"}>
-                  <BsBookmark />
+                <PrimaryButton onClick={handleToggleSavedFilm} size={"small"}>
+                  {isSaved ? <BsBookmarkFill /> : <BsBookmark />}
                 </PrimaryButton>
-                <PrimaryButton size={"small"}>
-                  <BsStar />
+                <PrimaryButton onClick={handleToggleFavoriteFilm} size={"small"}>
+                  {isFavorite ? <BsStarFill /> : <BsStar />}
                 </PrimaryButton>
               </Stack>
             </ContentWrapper>
