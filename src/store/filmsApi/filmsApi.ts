@@ -1,8 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Film, TopFilms } from "../../types/Film";
+import { HYDRATE } from "next-redux-wrapper";
 
 export const filmsApi = createApi({
   reducerPath: "api/films",
+  extractRehydrationInfo(action) {
+    if (action.type === HYDRATE) {
+      return action.payload.api;
+    }
+  },
   baseQuery: fetchBaseQuery({
     baseUrl: "https://kinopoiskapiunofficial.tech/api/",
     prepareHeaders: (headers) => {
