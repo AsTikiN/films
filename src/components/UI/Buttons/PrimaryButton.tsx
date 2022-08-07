@@ -1,4 +1,3 @@
-import React, { JSXElementConstructor } from "react";
 import { Button, styled } from "@mui/material";
 import theme from "../../../../theme";
 
@@ -10,9 +9,14 @@ interface PrimaryButtonProps {
 
 const PrimaryButton = ({ children, size = "large", color }: PrimaryButtonProps) => {
   const CustomButton = styled(Button)(({ theme }) => ({
-    "&.MuiButton-root": {},
+    "&.MuiButton-root": {
+      "& svg": {
+        width: "18px",
+        height: "18px",
+      },
+    },
   }));
-
+  //
   return (
     <CustomButton sx={{ background: color && theme.palette?.primaryGradient?.[color] }} size={size}>
       {children}

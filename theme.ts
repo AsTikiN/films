@@ -56,11 +56,11 @@ const theme = createTheme({
         },
         {
           props: { size: "medium" },
-          style: { fontSize: "16px", padding: "10px 40px", borderRadius: "16px" },
+          style: { fontSize: "16px", padding: "11px 31px", borderRadius: "16px" },
         },
         {
-          props: { color: "gradient" },
-          style: { color: "red" },
+          props: { size: "small" },
+          style: { fontSize: "16px", padding: "5px", borderRadius: "16px" },
         },
       ],
     },
