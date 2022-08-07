@@ -23,9 +23,11 @@ const StyledPagination = styled(Pagination)({
     color: "white",
     border: "1px solid #6585A6",
   },
+
   "& .Mui-selected": {
     color: "#92BBE5",
   },
+
   "& .MuiPaginationItem-root": {
     color: "white",
   },
@@ -36,29 +38,22 @@ const FilmListWrapper = styled("div")({
   padding: "50px 0",
 });
 
-interface IuseStickyState {
-  defaultValue: number;
-  key: string;
-}
-
 const FilmList = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const shouldUseLocalStorage = useRef(true);
 
   const { data } = useGetTopPopularFilmsQuery(currentPage);
   const FilmListTopRef = useRef<null | HTMLDivElement>(null);
+
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
     FilmListTopRef.current && FilmListTopRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
-    if (shouldUseLocalStorage.current) {
-      const value = localStorage.getItem("filmPage");
-      if (value !== null) {
-        setCurrentPage(+value);
-      }
-      shouldUseLocalStorage.current = false;
+    const value = localStorage.getItem("filmPage");
+
+    if (value) {
+      setCurrentPage(parseInt(value));
     }
   }, []);
 
