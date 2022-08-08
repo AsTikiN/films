@@ -21,7 +21,6 @@ const StyledCardMedia = styled(CardMedia)({
     display: "block",
     width: "100%",
     height: "100%",
-    // borderRadius: "15px",
 
     "&:hover": {
       opacity: "0",
