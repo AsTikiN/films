@@ -11,6 +11,7 @@ import PrimaryButton from "../../components/UI/Buttons/PrimaryButton";
 import { BsBookmark, BsBookmarkFill, BsStar, BsStarFill } from "react-icons/bs";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import Loader from "../../components/UI/Loaders/Loader";
 
 const Wrapper = styled("div")({
   height: "calc(100vh - 102px)",
@@ -25,6 +26,7 @@ const Wrapper = styled("div")({
   padding: "0px 30px",
   display: "flex",
   alignItems: "center",
+  justifyContent: "center",
 });
 
 const ContentWrapper = styled(Stack)({
@@ -47,8 +49,10 @@ const Description = styled("div")({
 
 const normalizeGenres = (genres: any[]) => {
   let normalizedGenres = "";
+
   genres.forEach((elem, index) => {
     normalizedGenres += elem.genre[0].toUpperCase() + elem.genre.slice(1);
+
     if (index + 1 < genres.length) {
       normalizedGenres += " / ";
     }
@@ -65,7 +69,7 @@ const CurrentFilm = () => {
   const favoriteFilms = useTypedSelector((state) => state.film.favoriteFilms);
 
   // @ts-ignore
-  const { data } = useGetFilmQuery(+router.query.id);
+  const { data } = useGetFilmQuery(parseInt(router.query.id));
 
   const [isSaved, setIsSaved] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -80,6 +84,7 @@ const CurrentFilm = () => {
       removeSavedFilm(filmId);
     }
   };
+
   const handleToggleFavoriteFilm = () => {
     const filmId = data?.kinopoiskId;
     if (!filmId) return;
@@ -97,6 +102,7 @@ const CurrentFilm = () => {
       localStorage.setItem("savedFilms", JSON.stringify(savedFilms));
     }
   }, [savedFilms]);
+
   useEffect(() => {
     if (data) {
       setIsFavorite(favoriteFilms.includes(data.kinopoiskId));
@@ -104,10 +110,14 @@ const CurrentFilm = () => {
     }
   }, [favoriteFilms]);
 
+  useEffect(() => {
+    console.log(data?.genres);
+  }, [data?.genres])
+
   return (
     <MainLayout>
       <Wrapper>
-        {data && (
+        {data ? (
           <Container maxWidth={"lg"}>
             <ContentWrapper direction="column" justifyContent="center" alignItems="flex-start" spacing={"35px"}>
               <Title>{data.nameRu}</Title>
@@ -127,7 +137,7 @@ const CurrentFilm = () => {
               </Stack>
             </ContentWrapper>
           </Container>
-        )}
+        ) : <Loader size={100} color="secondary"/>}
       </Wrapper>
     </MainLayout>
   );

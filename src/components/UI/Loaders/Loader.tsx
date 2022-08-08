@@ -1,9 +1,14 @@
 import React from "react";
 import {CircularProgress, Box} from '@mui/material';
 
-const Loader = () => (
+interface Props {
+  size?: number;
+  color?: "primary" | "inherit" | "secondary" | "error" | "info" | "success" | "warning" | undefined;
+}
+
+const Loader = ({size = 35, color="primary"}: Props) => (
   <Box>
-    <CircularProgress />
+    <CircularProgress size={size} color={color}/>
   </Box>
 )
 
