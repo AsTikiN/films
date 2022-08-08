@@ -19,7 +19,7 @@ const Search = ({
 
   const [searchValue, setSearchValue] = useState("");
 
-  const handleSearchCnage = (e: any) : void => {
+  const handleSearchChange = (e: any) : void => {
     setSearchValue(e.target.value);
   }
 
@@ -27,7 +27,7 @@ const Search = ({
     setSearchValue("");
   }
 
-  const SearchWrapper = styled("div")(({theme}): any =>({
+  const SearchWrapper = styled("div")(({ theme }): any =>({
     width: "300px",
     position: "relative",
     borderWidth: "1px",
@@ -62,14 +62,14 @@ const Search = ({
     }
   })) 
 
-  const SearchIconWrapper = styled("div")(({theme}): any =>({
+  const SearchIconWrapper = styled("div")(({ theme }): any =>({
     position: "absolute",
     left: "12px",
     top: "12px",
     pointerEvents: "none"
   }))
 
-  const CloseIconWrapper = styled("div")(({theme}): any =>({
+  const CloseIconWrapper = styled("div")(({ theme }): any =>({
     position: "absolute",
     right: "12px",
     top: "12px",
@@ -88,7 +88,7 @@ const Search = ({
       onClick={onClick}
       value={searchValue}
       autoFocus
-      onChange={handleSearchCnage}
+      onChange={handleSearchChange}
       />
       {
         searchValue &&

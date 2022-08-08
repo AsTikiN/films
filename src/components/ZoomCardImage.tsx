@@ -12,6 +12,7 @@ const Wrapper = styled("figure")({
   backgroundSize: "150%",
   position: "relative",
   overflow: "hidden",
+  borderRadius: "15px",
 })
 
 const StyledCardMedia = styled(CardMedia)({
@@ -20,6 +21,7 @@ const StyledCardMedia = styled(CardMedia)({
     display: "block",
     width: "100%",
     height: "100%",
+    // borderRadius: "15px",
 
     "&:hover": {
       opacity: "0",
