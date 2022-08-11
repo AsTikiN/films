@@ -40,6 +40,27 @@ const FilmInteractions: FC<FilmInteractionsProps> = ({ kinopoiskId }) => {
   };
 
   useEffect(() => {
+    const localeSavedFilms = JSON.parse(localStorage.getItem("savedFilms"));
+    const localeFavoriteFilms = JSON.parse(localStorage.getItem("favoriteFilms"));
+
+    if (localeSavedFilms) {
+      for (let elem of localeSavedFilms) {
+        if (!savedFilms.includes(elem)) {
+          addSavedFilm(elem);
+        }
+      }
+    }
+    if (localeSavedFilms) {
+      for (let elem of localeFavoriteFilms) {
+        if (!favoriteFilms.includes(elem)) {
+          addFavoriteFilm(elem);
+        }
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log(`savedFilms = ${savedFilms}`);
     if (kinopoiskId) {
       setIsSaved(savedFilms.includes(kinopoiskId));
       localStorage.setItem("savedFilms", JSON.stringify(savedFilms));
@@ -49,7 +70,7 @@ const FilmInteractions: FC<FilmInteractionsProps> = ({ kinopoiskId }) => {
   useEffect(() => {
     if (kinopoiskId) {
       setIsFavorite(favoriteFilms.includes(kinopoiskId));
-      localStorage.setItem("favoriteFilms", JSON.stringify(savedFilms));
+      localStorage.setItem("favoriteFilms", JSON.stringify(favoriteFilms));
     }
   }, [favoriteFilms]);
 
