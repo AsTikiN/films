@@ -50,7 +50,7 @@ const FilmInteractions: FC<FilmInteractionsProps> = ({ kinopoiskId }) => {
         }
       }
     }
-    if (localeSavedFilms) {
+    if (localeFavoriteFilms) {
       for (let elem of localeFavoriteFilms) {
         if (!favoriteFilms.includes(elem)) {
           addFavoriteFilm(elem);
@@ -60,7 +60,6 @@ const FilmInteractions: FC<FilmInteractionsProps> = ({ kinopoiskId }) => {
   }, []);
 
   useEffect(() => {
-    console.log(`savedFilms = ${savedFilms}`);
     if (kinopoiskId) {
       setIsSaved(savedFilms.includes(kinopoiskId));
       localStorage.setItem("savedFilms", JSON.stringify(savedFilms));

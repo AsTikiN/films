@@ -5,6 +5,7 @@ import { ThemeProvider } from "@emotion/react";
 import theme from "../../theme";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
+import App from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -17,3 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
+
+MyApp.getInitialProps = async (appContext: any) => {
+  const appProps = await App.getInitialProps(appContext);
+
+  return { ...appProps };
+};

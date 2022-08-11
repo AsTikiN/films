@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MainLayout from "../../MainLayout";
 import { useRouter } from "next/router";
 import { useGetFilmQuery } from "../../store/filmsApi/filmsApi";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticProps, InferGetStaticPropsType } from "next";
 import { Container, styled } from "@mui/system";
 import { Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -64,9 +64,10 @@ const normalizeGenres = (genres: any[]) => {
 
 const CurrentFilm = () => {
   const router = useRouter();
+  const queryId = router.query.id;
 
   // @ts-ignore
-  const { data } = useGetFilmQuery(parseInt(router.query.id));
+  const { data } = useGetFilmQuery(parseInt(router.query.id || "0"));
 
   return (
     <MainLayout>
