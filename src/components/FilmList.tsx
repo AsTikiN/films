@@ -6,12 +6,16 @@ import CardLoader from "./UI/Loaders/CardLoader";
 import theme from "../../theme";
 import { useGetTopPopularFilmsQuery } from "../store/filmsApi/filmsApi";
 
-const StyledStack = styled(Stack)({
+const StyledStack = styled(Stack)(({ theme }) => ({
   display: "flex",
   flexDirection: "row",
   flexWrap: "wrap",
   gap: "35px",
-});
+  [theme.breakpoints.down("lg")]: {
+    gap: "35px 0",
+    justifyContent: "space-around",
+  },
+}));
 
 const StyledPagination = styled(Pagination)({
   "& .MuiPagination-ul": {
