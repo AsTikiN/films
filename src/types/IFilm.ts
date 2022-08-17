@@ -21,7 +21,7 @@ export interface FilmInTopFilms {
   ratingChange?: any;
 }
 
-export interface Film {
+export interface IFilm {
   kinopoiskId: number;
   imdbId?: any;
   nameRu: string;
@@ -68,7 +68,22 @@ export interface Film {
   lastSync: Date;
 }
 
-export interface TopFilms {
+export interface ITopFilms {
   films: FilmInTopFilms[];
   pagesCount: number;
+}
+
+export interface SimilarItem {
+  filmId: number;
+  nameRu: string;
+  nameEn: string;
+  nameOriginal: string;
+  posterUrl: string;
+  posterUrlPreview: string;
+  relationType: string;
+}
+
+export interface ISimilarFilms {
+  total: number;
+  items: SimilarItem[];
 }

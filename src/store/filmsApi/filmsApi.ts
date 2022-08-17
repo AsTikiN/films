@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Film, TopFilms } from "../../types/Film";
+import { IFilm, ISimilarFilms, ITopFilms } from "../../types/IFilm";
 import { HYDRATE } from "next-redux-wrapper";
 
 export const filmsApi = createApi({
@@ -19,13 +19,16 @@ export const filmsApi = createApi({
   }),
 
   endpoints: (build) => ({
-    getFilm: build.query<Film, number>({
+    getFilm: build.query<IFilm, number>({
       query: (filmId: number) => `v2.2/films/${filmId}`,
     }),
-    getTopPopularFilms: build.query<TopFilms, number>({
+    getTopPopularFilms: build.query<ITopFilms, number>({
       query: (page: number) => `v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`,
+    }),
+    getSimilarFilms: build.query<ISimilarFilms, number>({
+      query: (filmId: number) => `v2.2/films/${filmId}/similars`,
     }),
   }),
 });
 
-export const { useGetFilmQuery, useGetTopPopularFilmsQuery } = filmsApi;
+export const { useGetFilmQuery, useGetTopPopularFilmsQuery, useGetSimilarFilmsQuery } = filmsApi;

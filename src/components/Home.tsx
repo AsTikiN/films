@@ -22,23 +22,23 @@ const Banner = styled("div")({
 const Slogan = styled("h1")({
   maxWidth: "670px",
   textAlign: "center",
-})
+});
 
-const Wrapper = styled("div")(({theme}) => ({
+const Wrapper = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.bgColor.main,
-  paddingTop: "50px",
-}))
+  padding: "50px 0",
+}));
 
 const Home: FC = () => {
   // const { data, isLoading, isFetching, isError } = useGetFilmQuery(301);
 
   return (
     <MainLayout>
-        <Wrapper>
-          <Banner>
-            <Slogan style={{ color: "white" }}>Лучший сервис для совместного просмотра фильмов</Slogan>
-          </Banner>
-        </Wrapper>
+      <Wrapper>
+        <Banner>
+          <Slogan style={{ color: "white" }}>Лучший сервис для совместного просмотра фильмов</Slogan>
+        </Banner>
+      </Wrapper>
       <FilmList />
     </MainLayout>
   );

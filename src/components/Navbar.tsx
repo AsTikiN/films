@@ -58,6 +58,7 @@ const Navbar = () => {
               </Link>
               <StyledStack spacing={"46px"} direction={"row"} sx={{ alignItems: "center" }}>
                 {/*<MySwitch />*/}
+                <Burger />
                 <MySearchInput placeholder="Search orders..." />
                 <Link href={"/catalog"}>
                   <a>

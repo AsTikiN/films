@@ -16,7 +16,7 @@ const MainLayout = ({ children }: any) => {
       {children}
       <footer>
         <StyledFooter>
-          <Container maxWidth={"lg"}>karl huinya</Container>
+          <Container maxWidth={"lg"}></Container>
         </StyledFooter>
       </footer>
     </>

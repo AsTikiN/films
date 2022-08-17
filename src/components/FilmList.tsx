@@ -39,7 +39,7 @@ const StyledPagination = styled(Pagination)({
 
 const FilmListWrapper = styled("div")({
   background: theme.palette.bgColor.main,
-  padding: "50px 0",
+  paddingBottom: "50px",
 });
 
 const FilmList = () => {
@@ -47,6 +47,8 @@ const FilmList = () => {
 
   const { data } = useGetTopPopularFilmsQuery(currentPage);
   const FilmListTopRef = useRef<null | HTMLDivElement>(null);
+
+  console.log(FilmListTopRef.current);
 
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);

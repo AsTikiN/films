@@ -5,7 +5,7 @@ import { CardActionArea, LinearProgress } from "@mui/material";
 import { styled } from "@mui/system";
 import RatingProgress from "./UI/RatingProgress";
 import React, { FC } from "react";
-import { FilmInTopFilms } from "../types/Film";
+import { FilmInTopFilms, SimilarItem } from "../types/IFilm";
 import Link from "next/link";
 import ZoomCardImage from "../components/ZoomCardImage";
 

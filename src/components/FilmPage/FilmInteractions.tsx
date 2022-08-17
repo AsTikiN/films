@@ -38,9 +38,10 @@ const FilmInteractions: FC<FilmInteractionsProps> = ({ kinopoiskId }) => {
       removeFavoriteFilm(filmId);
     }
   };
-
   useEffect(() => {
+    // @ts-ignore
     const localeSavedFilms = JSON.parse(localStorage.getItem("savedFilms"));
+    // @ts-ignore
     const localeFavoriteFilms = JSON.parse(localStorage.getItem("favoriteFilms"));
 
     if (localeSavedFilms) {
