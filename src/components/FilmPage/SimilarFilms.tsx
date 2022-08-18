@@ -34,16 +34,19 @@ const Simple = ({ deviceType }: any) => {
     overflow: "hidden",
     height: "100%",
     maxHeight: "50px",
-    bottom: "30px",
+    bottom: "0",
     left: "0",
     width: "100%",
     transition: "all 0.3s ease-in",
+    
     "&:hover": {
       maxHeight: "250px",
+
       "& .react-multi-carousel-list": {
         transition: "all 0.3s ease-in",
         bottom: "0",
       },
+
       "& svg": {
         transition: "all 0.3s ease-in",
         bottom: "200px",
@@ -61,24 +64,25 @@ const Simple = ({ deviceType }: any) => {
       width: "100%",
       cursor: "grab",
     },
+
     "& .react-multi-carousel-track": {
       margin: "0 auto",
     },
+
     "& li:nth-last-child(1)": {
       width: "130px!important",
     },
   });
+
   const SvgWrapper = styled("div")({
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+  alignItems: "center",
+
     "& svg": {
       transition: "all 0.3s ease-in",
       position: "absolute",
       bottom: "0px",
-      color: "white",
-      width: "50px",
-      height: "50px",
     },
   });
 
@@ -87,7 +91,7 @@ const Simple = ({ deviceType }: any) => {
       {data && data.total > 0 && (
         <CarouselWrapper>
           <SvgWrapper>
-            <RiArrowUpSLine />
+            <RiArrowUpSLine size={50} color={"#ffffff"}/>
           </SvgWrapper>
           <StyledCarousel
             deviceType={deviceType}
@@ -98,7 +102,7 @@ const Simple = ({ deviceType }: any) => {
             centerMode
           >
             {data.items.map((film, index) => {
-              return <SimilarFilmItem key={index} film={film} />;
+              return <SimilarFilmItem key={film.filmId} film={film} />;
             })}
           </StyledCarousel>
         </CarouselWrapper>
