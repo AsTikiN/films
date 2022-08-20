@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Container, styled } from "@mui/system";
 import FilmList from "./FilmList";
-import MainLayout from "../MainLayout";
+import MainLayout from "../layouts/MainLayout";
 
 const Banner = styled("div")({
   minHeight: "470px",

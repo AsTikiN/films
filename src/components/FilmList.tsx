@@ -48,8 +48,6 @@ const FilmList = () => {
   const { data } = useGetTopPopularFilmsQuery(currentPage);
   const FilmListTopRef = useRef<null | HTMLDivElement>(null);
 
-  console.log(FilmListTopRef.current);
-
   const handleChangePage = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
     FilmListTopRef.current && FilmListTopRef.current.scrollIntoView({ behavior: "smooth" });

@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-import MainLayout from "../../MainLayout";
 import { useRouter } from "next/router";
 import { useGetFilmQuery } from "../../store/filmsApi/filmsApi";
 import { Container, styled } from "@mui/system";
@@ -7,6 +5,7 @@ import { Stack } from "@mui/material";
 import Loader from "../../components/UI/Loaders/Loader";
 import FilmInteractions from "./FilmInteractions";
 import SimilarFilms from "./SimilarFilms";
+import NavLayout from "../../layouts/NavLayout";
 
 const Wrapper = styled("div")({
   height: "calc(100vh - 102px)",
@@ -14,7 +13,7 @@ const Wrapper = styled("div")({
   background: "url(https://i.im.ge/2022/08/06/FgYHVr.image-2022-08-06-14-42-20.png)",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
-  backgroundColor: "rgba(0,0,0,0.65)",
+  backgroundColor: "rgba(0,0,0,0.7)",
   backgroundBlendMode: "multiply",
   backgroundPosition: "center center",
   color: "white",
@@ -46,7 +45,8 @@ const Description = styled("div")({
   fontSize: "18px",
 });
 const StyledImg = styled("img")({
-  height: "100%",
+  width: "20%",
+  height: "auto",
   borderRadius: "15px",
 });
 
@@ -70,10 +70,10 @@ const CurrentFilm = () => {
 
   // @ts-ignore
   const { data } = useGetFilmQuery(parseInt(router.query.id || "0"));
-
+  console.log(data);
   return (
     <>
-      <MainLayout>
+      <NavLayout>
         <Wrapper>
           {data ? (
             <StyledContainer maxWidth={"lg"}>
@@ -91,8 +91,8 @@ const CurrentFilm = () => {
             <Loader size={100} color="secondary" />
           )}
         </Wrapper>
-      </MainLayout>
-      <SimilarFilms deviceType={"desktop"} />
+      </NavLayout>
+      <SimilarFilms />
     </>
   );
 };
