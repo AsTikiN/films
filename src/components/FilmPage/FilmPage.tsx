@@ -14,7 +14,7 @@ const Wrapper = styled("div")({
   background: "url(https://i.im.ge/2022/08/06/FgYHVr.image-2022-08-06-14-42-20.png)",
   backgroundRepeat: "no-repeat",
   backgroundSize: "cover",
-  backgroundColor: "rgba(0,0,0,0.6)",
+  backgroundColor: "rgba(0,0,0,0.65)",
   backgroundBlendMode: "multiply",
   backgroundPosition: "center center",
   color: "white",
@@ -45,6 +45,10 @@ const Genres = styled("div")({
 const Description = styled("div")({
   fontSize: "18px",
 });
+const StyledImg = styled("img")({
+  height: "100%",
+  borderRadius: "15px",
+});
 
 const normalizeGenres = (genres: any[]) => {
   let normalizedGenres = "";
@@ -73,12 +77,15 @@ const CurrentFilm = () => {
         <Wrapper>
           {data ? (
             <StyledContainer maxWidth={"lg"}>
-              <ContentWrapper direction="column" justifyContent="center" alignItems="flex-start" spacing={"35px"}>
-                <Title>{data.nameRu}</Title>
-                <Genres>{normalizeGenres(data.genres)}</Genres>
-                <Description>{data.description}</Description>
-                <FilmInteractions kinopoiskId={data.kinopoiskId} />
-              </ContentWrapper>
+              <Stack direction={"row"} spacing={"50px"}>
+                <StyledImg src={data.posterUrlPreview} alt={data.nameRu} />
+                <ContentWrapper direction="column" justifyContent="center" alignItems="flex-start" spacing={"35px"}>
+                  <Title>{data.nameRu}</Title>
+                  <Genres>{normalizeGenres(data.genres)}</Genres>
+                  <Description>{data.description}</Description>
+                  <FilmInteractions kinopoiskId={data.kinopoiskId} />
+                </ContentWrapper>
+              </Stack>
             </StyledContainer>
           ) : (
             <Loader size={100} color="secondary" />
